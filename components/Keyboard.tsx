@@ -1,5 +1,6 @@
 import { KEYS } from "../utils/Keys";
 import styles from "../Keyboard.module.css";
+import { SignatureKind } from "typescript";
 
 const keys = KEYS;
 
@@ -7,12 +8,14 @@ type KeyboardProps = {
   activeLetters: string[];
   inactiveLetters: string[];
   addGuessedLetter: (letter: string) => void;
+  disabled: boolean;
 };
 
 export function Keyboard({
   activeLetters,
   inactiveLetters,
   addGuessedLetter,
+  disabled,
 }: KeyboardProps) {
   return (
     <div
@@ -32,7 +35,7 @@ export function Keyboard({
               isInactive ? styles.inactive : ""
             }`}
             key={key}
-            disabled={isActive || isInactive}
+            disabled={isActive || isInactive || disabled}
           >
             {key}
           </button>
